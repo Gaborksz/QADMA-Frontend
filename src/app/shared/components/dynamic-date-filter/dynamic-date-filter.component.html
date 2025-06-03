@@ -1,0 +1,25 @@
+<div class="fields">
+    <div class="four wide field">
+        <div>
+            <label>Selector</label>
+        </div>
+        <select class="ui dropdown" [formControl]="selectorFormControl">
+            <option value="None" disabled selected>Select an option</option>
+            <option *ngFor="let item of selectors" [value]="item">{{ item }}</option>
+        </select>
+    </div>
+    <div class="four wide field" *ngIf="showDateFromControl">
+        <app-input label="{{labelcontent}}" controlType="date" [inputControl]="dateFromFormControl"></app-input>
+        <div class="ui pointing red basic label" 
+            *ngIf="dateFromFormControl.errors?.['dateFromNull']">
+            Must be a valid date
+        </div>
+    </div>
+    <div class="four wide field" *ngIf="showToControl">
+        <app-input label="To" controlType="date" [inputControl]="dateToFormControl"></app-input>
+        <div class="ui pointing red basic label" 
+        *ngIf="dateToFormControl.errors?.['dateToNull']">
+            Must be a valid date
+        </div>
+    </div>
+</div>

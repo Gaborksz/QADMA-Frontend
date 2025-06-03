@@ -1,0 +1,33 @@
+<app-input label="{{displayLabel}}" [inputControl]="searchControl" (blur)="onBlur()"></app-input>
+<div *ngIf="noResultsFound">No results were found</div>
+<div *ngIf="table.length">
+
+  <table class="ui striped teal collapsing table" *ngIf="table">
+      <div>
+        <thead *ngIf="columnHeaders.length > 0">
+          <tr>
+            <td *ngFor="let header of columnHeaders">{{header}}</td>
+          </tr>
+        </thead>
+      </div>
+
+
+      <div class="scrollable">
+        <tbody >
+          <ng-container  *ngIf="columnHeaders.length > 0 else displayCells">
+            <tr *ngFor="let object of table">
+              <td *ngFor="let header of columnHeaders"
+                (click)="setValues(object[valueColumnName], object[displayColumnName])">
+                {{object[header]}}
+              </td>
+            </tr>
+          </ng-container >
+            <ng-template #displayCells>
+              <tr *ngFor="let value of table" (click)="setValues(value, value)">
+                <td>{{value}}</td>
+              </tr>
+            </ng-template>
+          </tbody>
+      </div>
+  </table>
+</div>

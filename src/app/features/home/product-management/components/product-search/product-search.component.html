@@ -1,0 +1,43 @@
+<div class="ui segment grey">
+    <form class="ui form" [formGroup]="productSearchForm" (ngSubmit)="onSubmit()">
+        <div class="fields">
+            <div class="three wide field">
+                <app-input label="Part Number" [inputControl]="partNumberControl"></app-input>
+            </div>
+            <div class="four wide field">
+                <app-input label="Name" [inputControl]="productNameControl"></app-input>
+            </div>
+            <div class="two wide field">
+                <app-input label="Revision" [inputControl]="productRevisionControl"></app-input>
+            </div>
+        </div>
+
+        <h4 class="ui dividing header teal">Date Created</h4>
+
+        <app-dynamic-date-filter [selectorControl]="dateCreatedSelectorControl"
+            [dateFromControl]="dateCreatedFromControl" [dateToControl]="dateCreatedToControl"></app-dynamic-date-filter>
+
+        <h4 class="ui dividing header teal">Date Modified</h4>
+
+        <app-dynamic-date-filter [selectorControl]="dateModifiedSelectorControl"
+            [dateFromControl]="dateModifiedFromControl"
+            [dateToControl]="dateModifiedToControl"></app-dynamic-date-filter>
+
+        <h4 class="ui dividing header teal">User Data</h4>
+
+        <div class="fields">
+            <div class="five wide field">
+                <app-text-input-dropdown-search class="dynamicdropdown" [controlToSet]="createdByControl"
+                    [dataSourceFn]="getUsers" valueColumnName="id" displayColumnName="Name" displayLabel="Created By">
+                </app-text-input-dropdown-search>
+            </div>
+            <div class="five wide field">
+                <app-text-input-dropdown-search class="dynamicdropdown" [controlToSet]="modifiedByControl"
+                    [dataSourceFn]="getUsers" valueColumnName="id" displayColumnName="Name" displayLabel="Modified By">
+                </app-text-input-dropdown-search>
+            </div>
+        </div>
+        <button class="ui button teal">Search</button>
+    </form>
+</div>
+<router-outlet></router-outlet>

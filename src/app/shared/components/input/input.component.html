@@ -1,0 +1,17 @@
+<div>
+    <label>{{label}}</label>
+</div>
+<div class="ui input fluid" [ngClass]="{'error': inputControl.dirty && inputControl.touched && inputControl.errors}">
+    <input [type]="controlType" [formControl]="inputControl" (blur)="onBlur()">
+</div>
+<div *ngIf="inputControl.dirty && inputControl.touched && inputControl.errors">
+    <div class="ui pointing red basic label" *ngIf="inputControl.errors?.['required']">This field is required</div>
+    <div class="ui pointing red basic label" *ngIf="inputControl.errors?.['email']">Must be a valid email address
+    </div>
+    <div class="ui pointing red basic label" *ngIf="inputControl.errors?.['minlength']">
+        Minimum password length is {{inputControl.errors['minlength']['requiredLength']}}
+        but provided password length is {{inputControl.errors['minlength']['actualLength']}}
+    </div>
+    <div class="ui pointing red basic label" *ngIf="inputControl.errors?.['userNameTaken']">This username is not
+        available</div>
+</div>

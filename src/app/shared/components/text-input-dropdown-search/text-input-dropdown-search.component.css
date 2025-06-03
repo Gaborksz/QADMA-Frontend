@@ -1,0 +1,9 @@
+.table {
+    position: absolute;
+}
+
+.scrollable{
+    overflow-x: scroll;
+    min-height: 50px;
+    max-height: 200px;
+}
