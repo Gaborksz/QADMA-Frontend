@@ -19,16 +19,8 @@ export class SignInComponent {
     "password": "12345678"
   }
 
-  currentUser$: BehaviorSubject<QadmaUser> = new BehaviorSubject({
-    "id": 0,
-    "username": "",  
-    "authorities": [
-      {
-        "id": 0,
-        "authority": ""
-      }
-    ]
-  });
+  currentUser$: BehaviorSubject<QadmaUser> = new BehaviorSubject(new QadmaUser());
+
 
   constructor(
     private authService: AuthService,

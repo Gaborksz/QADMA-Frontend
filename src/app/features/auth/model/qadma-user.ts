@@ -1,8 +1,20 @@
 import { QadmaUserAuthority } from "./qadma-user-authority";
+import { QadmaUserDTO } from "./qadma-user-dto";
 
-export interface QadmaUser {
+export class QadmaUser {
 
-    "id" : number
-    "username" : string
-    "authorities" : QadmaUserAuthority[]
+    id : number = 0;
+    username : string = '';
+    authorities : QadmaUserAuthority[] = [];
+
+
+    constructor () {};
+
+
+    static fromDTO(userDTO: QadmaUserDTO): QadmaUser {
+        
+        const user = new QadmaUser();        
+        Object.assign(user, userDTO);
+        return user;
+    }
 }

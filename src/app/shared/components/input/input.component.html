@@ -1,9 +1,12 @@
 <div>
     <label>{{label}}</label>
 </div>
+
 <div class="ui input fluid" [ngClass]="{'error': inputControl.dirty && inputControl.touched && inputControl.errors}">
-    <input [type]="controlType" [formControl]="inputControl" (blur)="onBlur()">
+    <input *ngIf="textarea === false" [type]="controlType" [formControl]="inputControl" (blur)="onBlur()">
+    <textarea *ngIf="textarea === true" [formControl]="inputControl" (blur)="onBlur()"></textarea>
 </div>
+
 <div *ngIf="inputControl.dirty && inputControl.touched && inputControl.errors">
     <div class="ui pointing red basic label" *ngIf="inputControl.errors?.['required']">This field is required</div>
     <div class="ui pointing red basic label" *ngIf="inputControl.errors?.['email']">Must be a valid email address

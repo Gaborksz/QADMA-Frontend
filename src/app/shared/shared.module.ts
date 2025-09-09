@@ -5,6 +5,7 @@ import { UserSelectInputComponent } from './components/user-select-input/user-se
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicDateFilterComponent } from './components/dynamic-date-filter/dynamic-date-filter.component';
 import { TextInputDropdownSearchComponent } from './components/text-input-dropdown-search/text-input-dropdown-search.component';
+import { DateUtil } from './helper-classes/date-util';
 
 
 

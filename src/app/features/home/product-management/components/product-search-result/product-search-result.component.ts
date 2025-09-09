@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
-import { Product } from '../../model/product';
 import { ProductService } from '../../service/product.service';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
+import { Product } from '../../model/product';
 
 @Component({
   selector: 'app-product-search-result',

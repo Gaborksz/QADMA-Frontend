@@ -8,10 +8,9 @@
           <p><strong>ID:</strong> {{ product.id }}</p>
           <p><strong>Revison:</strong> {{ product.revision }}</p>
           <p><strong>Date created:</strong> {{ product.dateCreated | date }}</p>
-          <p><strong>Created by:</strong> {{ product.creatorName }}</p>
+          <p><strong>Created by:</strong> {{ product.createdBy.username }}</p>
           <p><strong>Date modified:</strong> {{ product.dateModified | date }}</p>
-          <p><strong>Modified by:</strong> {{ product.modifierName }}</p>
-          <p *ngIf="product.inspectionPlanId > 0"><strong>Inspection Plan Id:</strong> {{ product.inspectionPlanId }}</p>
+          <p><strong>Modified by:</strong> {{ product.modifiedBy.username }}</p>          
         </div>
       </div>
       <div class="extra content">

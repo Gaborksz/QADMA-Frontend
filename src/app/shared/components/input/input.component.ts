@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Optional, Output, SkipSelf } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -8,10 +8,14 @@ import { FormControl } from '@angular/forms';
 })
 export class InputComponent {
 
-  @Input() inputControl = new FormControl();
   @Input() label = '';
+  @Input() inputControl!: FormControl;
   @Input() controlType = '';
+  @Input() textarea = false;
+  
   @Output() blur = new EventEmitter();
+
+  constructor(){}
 
 
   onBlur() {

@@ -1,0 +1,14 @@
+<div class="">
+    <form [formGroup]="productChangeNoteForm" (ngSubmit)="save()">
+        <div class="margin-bottom">
+            <app-change-note-form></app-change-note-form>
+        </div>
+
+        <app-product-form></app-product-form>
+
+
+        <div class="ui segment">
+            <button class="ui button teal">Save</button>
+        </div>
+    </form>
+</div>

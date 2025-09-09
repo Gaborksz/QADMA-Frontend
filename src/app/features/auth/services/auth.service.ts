@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, tap, map } from 'rxjs';
 
 import { QadmaUser } from '../model/qadma-user';
+import { QadmaUserDTO } from '../model/qadma-user-dto';
 import { SignInCredential } from '../model/signin-credential';
 
 @Injectable({
@@ -12,25 +13,34 @@ export class AuthService {
 
 
   baseUrl = 'http://localhost:8080';
-  private currentUser$ = new BehaviorSubject<QadmaUser | null>(null);
-
+  private currentUser = new BehaviorSubject<QadmaUser>(new QadmaUser);
+  currentUser$ = this.currentUser.asObservable();
 
   constructor(private http: HttpClient) { }
 
 
   signIn(loginCredentials: SignInCredential): Observable<QadmaUser> {
-    return this.http.post<QadmaUser>(`${this.baseUrl}/api/auth/signin`, loginCredentials)
+    return this.http.post<QadmaUserDTO>(`${this.baseUrl}/api/auth/signin`, loginCredentials)
       .pipe(
+        map(user => QadmaUser.fromDTO(user)),
         tap(user => {
           if (user?.id > 0) {
-            this.currentUser$.next(user);
+            this.currentUser.next(user);
           }
         })
       );
   }
 
   isSignedIn(): Observable<QadmaUser> {
-    return this.http.get<QadmaUser>(`${this.baseUrl}/api/auth/signedin`);
+    return this.http.get<QadmaUserDTO>(`${this.baseUrl}/api/auth/signedin`)
+      .pipe(
+        map(user => QadmaUser.fromDTO(user)),
+        tap(user => {
+          if (user?.id > 0) {
+            this.currentUser.next(user);
+          }
+        })
+      );;
   }
 
   signUp(signUpCredentials: SignInCredential): Observable<boolean> {
@@ -42,14 +52,9 @@ export class AuthService {
   }
 
   findUsersBySearchTerm(searchTerm: string): Observable<QadmaUser[]> {
-    return this.http.post<QadmaUser[]>(`${this.baseUrl}/api/user/searchterm`, searchTerm);
-  }
-
-  get signedInUser$() {
-    return this.currentUser$.asObservable();
-  }
-
-  get signedInUserValue() {
-    return this.currentUser$.getValue();
+    return this.http.post<QadmaUserDTO[]>(`${this.baseUrl}/api/user/searchterm`, searchTerm)
+      .pipe(
+        map(userDTOs => userDTOs.map(userDTO => QadmaUser.fromDTO(userDTO)))
+      );
   }
 }

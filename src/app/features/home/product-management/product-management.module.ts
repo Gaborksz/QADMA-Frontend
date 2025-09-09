@@ -9,7 +9,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProductSearchResultComponent } from './components/product-search-result/product-search-result.component';
 import { NoSearchResultComponent } from './components/no-search-result/no-search-result.component';
 import { ProductCreateHomeComponent } from './components/product-create-home/product-create-home.component';
-import { ProductCreateFormComponent } from './components/product-create-form/product-create-form.component';
+import { ChangeManagementModule } from '../change-management/change-management.module';
+import { ProductFormComponent } from './components/product-form/product-form.component';
 
 
 
@@ -20,13 +21,16 @@ import { ProductCreateFormComponent } from './components/product-create-form/pro
     ProductSearchResultComponent,
     NoSearchResultComponent,
     ProductCreateHomeComponent,
-    ProductCreateFormComponent  
+    ProductFormComponent
   ],
   imports: [
     CommonModule,
     ProductManagementRoutingModule,
     SharedModule,
-    ReactiveFormsModule   
+    ReactiveFormsModule       
+],
+exports:[
+  ProductFormComponent
 ]
 })
 export class ProductManagementModule { }

@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { FormMode } from '../../../../../shared/model/form.mode.enum';
+import { AuthService } from '../../../../auth/services/auth.service';
+import { ProductChangeNote } from '../../../change-management/model/product-change-note';
+
+
 
 @Component({
   selector: 'app-product-create-home',
@@ -7,4 +12,13 @@ import { Component } from '@angular/core';
 })
 export class ProductCreateHomeComponent {
 
+  mode = FormMode.Create;
+  productChangeNote!: ProductChangeNote
+
+
+  constructor(private authService: AuthService) {
+  }
+
+  ngOnInit() { }
+  
 }

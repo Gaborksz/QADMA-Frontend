@@ -2,8 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ProductSearchCriteria } from '../model/product-search-criteria';
 
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
+import { ProductDTO } from '../model/product-dto';
 import { Product } from '../model/product';
+import { AuthService } from '../../../auth/services/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +16,25 @@ export class ProductService {
   private productSerachCriteriaObs = new BehaviorSubject<ProductSearchCriteria | null>(null);
   productSerachCriteria$: Observable<ProductSearchCriteria | null> = this.productSerachCriteriaObs.asObservable();
 
+  private product!: BehaviorSubject<Product>;
+  product$!: Observable<Product>;
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient, private authService: AuthService) {
 
+    const product = new Product();
+    authService.currentUser$.subscribe(user => {
+      product.createdBy = user;
+      product.modifiedBy = user;
+    })
+
+    this.product = new BehaviorSubject(product);
+    this.product$ = this.product.asObservable();
   }
 
 
-  searchProduct(criteria: ProductSearchCriteria): Observable<Product[]> { 
-    return this.http.post<Product[]>(`${this.baseUrl}/api/product/search`, criteria);
+  searchProduct(criteria: ProductSearchCriteria): Observable<Product[]> {
+    return this.http.post<ProductDTO[]>(`${this.baseUrl}/api/product/search`, criteria)
+      .pipe(map((dtos: ProductDTO[]) => dtos.map(dto => Product.fromDTO(dto))))
   }
 
   setproductSerachCriteria(criteria: ProductSearchCriteria | null) {
