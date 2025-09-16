@@ -1,0 +1,30 @@
+<div>{{label}}</div>
+<div>
+    <div class="fields">
+        <div class="eight wide field">
+            <app-input [inputControl]="nameControl" (valueChange)="findUsersBySearchTerm($event)"
+                (blur)="onBlur()"></app-input>
+        </div>
+
+        Id
+        <div class="three wide field">
+            <app-input [inputControl]="idControl" (valueChange)="findUsersById($event)"
+                controlType="number"></app-input>
+        </div>
+    </div>
+</div>
+
+<table class="ui striped teal collapsing table" *ngIf="users.length > 0">
+    <thead>
+        <tr>
+            <td>User Name</td>
+            <td>Id</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users" (mousedown)="setUser(user)">
+            <td>{{user.username}}</td>
+            <td>{{user.id}}</td>
+        </tr>
+    </tbody>
+</table>
