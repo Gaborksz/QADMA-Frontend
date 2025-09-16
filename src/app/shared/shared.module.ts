@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputComponent } from './components/input/input.component';
-import { UserSelectInputComponent } from './components/user-select-input/user-select-input.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DynamicDateFilterComponent } from './components/dynamic-date-filter/dynamic-date-filter.component';
 import { TextInputDropdownSearchComponent } from './components/text-input-dropdown-search/text-input-dropdown-search.component';
-import { DateUtil } from './helper-classes/date-util';
+import { UserInputComponent } from './components/user-input/user-input.component';
 
 
 
 @NgModule({
   declarations: [
-    InputComponent, UserSelectInputComponent, DynamicDateFilterComponent, TextInputDropdownSearchComponent
+    InputComponent, DynamicDateFilterComponent, TextInputDropdownSearchComponent, UserInputComponent
   ],
   imports: [
     CommonModule, ReactiveFormsModule],
-  exports: [InputComponent, DynamicDateFilterComponent,TextInputDropdownSearchComponent]
+  exports: [InputComponent, DynamicDateFilterComponent, TextInputDropdownSearchComponent, UserInputComponent]
 })
 export class SharedModule { }
