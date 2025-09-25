@@ -1,0 +1,14 @@
+.table {
+    position: absolute;
+    z-index: 2;
+}
+
+.scrollable {
+    overflow-y: scroll;
+    min-height: 50px;
+    max-height: 200px;
+}
+
+.label_box {
+    color: white !important;
+}

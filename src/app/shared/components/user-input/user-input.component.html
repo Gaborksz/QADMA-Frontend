@@ -1,30 +1,36 @@
-<div>{{label}}</div>
+<div class="label_box">{{label}}</div>
 <div>
     <div class="fields">
         <div class="eight wide field">
-            <app-input [inputControl]="nameControl" (valueChange)="findUsersBySearchTerm($event)"
-                (blur)="onBlur()"></app-input>
+            <app-input [inputControl]="nameControl" (blur)="onBlur()"></app-input>
         </div>
 
-        Id
+        <label class="label_box">Id</label>
         <div class="three wide field">
-            <app-input [inputControl]="idControl" (valueChange)="findUsersById($event)"
-                controlType="number"></app-input>
+            <app-input [inputControl]="idControl" controlType="number" (blur)="onBlur()"></app-input>
         </div>
     </div>
+</div>
+<div class="ui red basic label" *ngIf="noMatchResults">
+    No results
+</div>
+<div class="ui red basic label" *ngIf="idControl.invalid">
+    Id must be a number and larger than 0
 </div>
 
 <table class="ui striped teal collapsing table" *ngIf="users.length > 0">
     <thead>
         <tr>
-            <td>User Name</td>
-            <td>Id</td>
+            <th>User Name</th>
         </tr>
     </thead>
-    <tbody>
-        <tr *ngFor="let user of users" (mousedown)="setUser(user)">
-            <td>{{user.username}}</td>
-            <td>{{user.id}}</td>
-        </tr>
-    </tbody>
+
+    <div class="scrollable">
+        <tbody>
+            <tr *ngFor="let user of users" (mousedown)="setUser(user)">
+                <td>{{user.username}}</td>
+                <td>{{user.id}}</td>
+            </tr>
+        </tbody>
+    </div>
 </table>
