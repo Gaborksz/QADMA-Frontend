@@ -1,0 +1,20 @@
+<form class="ui form">
+    <h3 class="ui dividing header teal">Change Note</h3>
+
+    <div class="one wide field">
+        <app-input [inputControl]="getControl('id')" label="Id"></app-input>
+    </div>
+
+
+    <app-input class="field" [inputControl]="getControl('changeDescription')" label="Change Description"
+        controlType="text" [textarea]="true"></app-input>
+
+
+    <div class="fields" style="margin-top: 10px;">
+        <app-input class="three wide field" [inputControl]="getControl('dateCreated')" label="Date Created"
+            controlType="date"></app-input>
+
+        <app-user-input class="eight wide field" [inputControl]="getControl('createdBy')"
+            label="Created By"></app-user-input>
+    </div>
+</form>

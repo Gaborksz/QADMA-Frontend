@@ -5,7 +5,7 @@ export const routes: Routes = [
     {
         path: '', redirectTo: '/qadma/auth/signin', pathMatch: 'full'
     },
-        {
+    {
         path: 'qadma', redirectTo: '/qadma/auth/signin', pathMatch: 'full'
     },
     {
@@ -13,7 +13,7 @@ export const routes: Routes = [
         children: [
             {
                 path: 'auth',
-                loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule)
+                loadChildren: () => import('./core/modules/auth/auth.module').then(m => m.AuthModule)
             },
             {
                 path: 'home',

@@ -1,0 +1,31 @@
+<form class="ui form">
+    <h3 class="ui dividing header teal">Product</h3>
+
+    <div class="fields">
+        <app-input class="one wide field" [inputControl]="getControl('id')" label="Id"></app-input>
+
+        <app-input class="three wide field" [inputControl]="getControl('partNumber')" label="Part Number"
+            controlType="number"></app-input>
+
+        <app-input class="five wide field" [inputControl]="getControl('productName')" label="Product Name"></app-input>
+
+        <app-input class="one wide field" [inputControl]="getControl('revision')" label="Revision"></app-input>
+    </div>
+
+    <div class="fields">
+        <app-input class="three wide field" [inputControl]="getControl('dateCreated')" label="Date Created"
+            controlType="date"></app-input>
+
+        <app-user-input class="eight wide field" [inputControl]="getControl('createdBy')"
+            label="Created By"></app-user-input>
+    </div>
+
+    <div class="fields">
+        <app-input class="three wide field" [inputControl]="getControl('dateModified')" label="Date Modified"
+            controlType="date"></app-input>
+
+
+        <app-user-input class="eight wide field" [inputControl]="getControl('modifiedBy')"
+            label="Modified By"></app-user-input>
+    </div>
+</form>

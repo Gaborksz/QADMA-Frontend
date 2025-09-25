@@ -1,7 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { AbstractControl, FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, filter, Observable, Subject, switchMap, takeUntil, tap } from 'rxjs';
-import { normalize } from '../../helper-classes/string-util';
+import { normalize } from '../../../core/helper-classes/string-util';
+
 
 type Primitive = number | string | boolean;
 
@@ -28,7 +29,7 @@ export class TextInputDropdownSearchComponent {
 
 
 
-  ngOnInit() {    
+  ngOnInit() {
     this.subscribeToControl();
   }
 
@@ -54,7 +55,7 @@ export class TextInputDropdownSearchComponent {
       )
       .subscribe(data => {
         this.displayValue = '';
-        this.table = data;       
+        this.table = data;
         this.generateTableColumnHeaders();
         this.noResultsFound = this.table.length === 0;
       });

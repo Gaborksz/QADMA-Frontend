@@ -1,0 +1,21 @@
+<div class="ui container">
+    <form class="ui form" [formGroup]="inspectionPlanForm">
+        <h3 class="ui dividing header teal">Inspection Plan</h3>
+        <div class="fields">
+            <app-input class="one wide field" label="Id" [inputControl]="getControl('id')"></app-input>
+            <app-input class="one wide field" label="Revision" [inputControl]="getControl('revision')"></app-input>
+        </div>
+        <div class="fields">
+            <app-input class="three wide field" label="Date Created" [inputControl]="getControl('dateCreated')"
+                controlType="date"></app-input>
+            <app-user-input class="eight wide field" label="Created By"
+                [inputControl]="getControl('createdBy')"></app-user-input>
+        </div>
+        <div class="fields">
+            <app-input class="three wide field" label="Date Modified" [inputControl]="getControl('dateModified')"
+                controlType="date"></app-input>
+            <app-user-input class="eight wide field" label="Modified By"
+                [inputControl]="getControl('modifiedBy')"></app-user-input>
+        </div>
+    </form>
+</div>

@@ -4,7 +4,7 @@
 
 <div class="ui input fluid" [ngClass]="{'error': inputControl.dirty && inputControl.touched && inputControl.errors}">
     <input *ngIf="textarea === false" [type]="controlType" [formControl]="inputControl" (blur)="onBlur()">
-    <textarea *ngIf="textarea === true" [formControl]="inputControl" (blur)="onBlur()"></textarea>
+    <textarea *ngIf=" textarea===true" [formControl]="inputControl" (blur)="onBlur()"></textarea>
 </div>
 
 <div *ngIf="inputControl.dirty && inputControl.touched && inputControl.errors">

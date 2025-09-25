@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, Optional, Output, SkipSelf } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -12,13 +12,18 @@ export class InputComponent {
   @Input() inputControl!: FormControl;
   @Input() controlType = '';
   @Input() textarea = false;
-  
+
   @Output() blur = new EventEmitter();
-
-  constructor(){}
-
+  @Output() valueChange = new EventEmitter<string>()
 
   onBlur() {
     this.blur.emit();
-  }  
+  }
+
+  ngOnInit() {
+    this.inputControl.valueChanges.subscribe(value => {
+      this.valueChange.emit(value)
+    });
+  }
 }
+
