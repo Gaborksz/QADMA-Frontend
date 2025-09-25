@@ -1,7 +1,17 @@
-<div class="ui grid">
-    <div class="ui sixteen wide column right aligned">
+<!-- app.component.html -->
+<div class="app-container">
+
+    <div>
         <h5 class="orbitron-tiny">Quality Assurance Data Manager Application</h5>
     </div>
-</div>
 
-<router-outlet></router-outlet>
+    <router-outlet></router-outlet>
+
+
+    <app-message-board class="message-board" [class.open]="menuOpen" (mouseleave)="menuOpen = false">
+
+    </app-message-board>
+
+
+    <div class="hover-zone" (mouseenter)="menuOpen = true"></div>
+</div>

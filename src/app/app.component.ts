@@ -1,21 +1,23 @@
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
+import { CoreModule } from "./core/core.module";
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CoreModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'QADMA-Frontend';
 
+  menuOpen = false;
 
-  constructor(private router: Router){
+  constructor(private router: Router) {
   }
 
-  ngOnInit(){  
+  ngOnInit() {
   }
 }
