@@ -1,0 +1,11 @@
+.searchResult {
+    border-radius: 10px;
+    padding: 10px;
+    background-color: rgba(1, 36, 42, 0.9)
+}
+
+
+.scrollable-segment {
+    max-height: 70vh;
+    overflow-y: auto;
+}

@@ -1,0 +1,26 @@
+<div class="searchResult" *ngIf="products.length > 0">
+    <div class="scrollable-segment">
+        <div class="ui three cards">
+            <div class="card" *ngFor="let product of products">
+                <div class="content">
+                    <div class="header">{{ product.productName }}</div>
+                    <div class="meta">Part #: {{ product.partNumber }}</div>
+                    <div class="description">
+                        <p><strong>Revison:</strong> {{ product.revision }}</p>
+                        <p><strong>Date created:</strong> {{ product.dateCreated | date }}</p>
+                        <p><strong>Created by:</strong> {{ product.createdBy.username }}</p>
+                        <p><strong>Date modified:</strong> {{ product.dateModified | date }}</p>
+                        <p><strong>Modified by:</strong> {{ product.modifiedBy.username }}</p>
+                    </div>
+                </div>
+                <div class="extra content">
+                    <a [routerLink]="['/qadma/home/product-management/modify', product.id]">
+                        <button class="ui teal small button">Modify</button>
+                    </a>
+                    <button *ngIf="!product.inspectionPlan" class="ui blue small button">Add Inspection
+                        Plan</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
