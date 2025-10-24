@@ -1,3 +1,5 @@
+import { QadmaUser } from "../../../../../core/model/qadma-user"
+
 export interface ProductSearchCriteria {
       id: number
       partNumber: number
@@ -9,6 +11,6 @@ export interface ProductSearchCriteria {
       dateModifiedSelector: string
       dateModifiedFrom: Date
       dateModifiedTo: Date
-      createdBy: number
-      modifiedBy: number
+      createdBy: QadmaUser
+      modifiedBy: QadmaUser
 }
