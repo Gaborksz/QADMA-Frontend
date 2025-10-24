@@ -1,0 +1,9 @@
+<form [formGroup]="inspectionTemplateChangeNoteForm" (ngSubmit)="save()">
+    <app-inspection-template-change-note [inspectionTemplateChangeNote]="inspectionTemplateChangeNote" [mode]="mode"
+        [parentForm]="inspectionTemplateChangeNoteForm"
+        (onFormUpdate)="updateInspectionTemplateChangeNoteValue($event)">
+    </app-inspection-template-change-note>
+    <button class="ui huge button fluid green">Save
+
+    </button>
+</form>

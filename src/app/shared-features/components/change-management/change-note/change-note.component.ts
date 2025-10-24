@@ -1,12 +1,9 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { DateUtil } from '../../../../core/helper-classes/date-util';
 import { BasicFormControl } from '../../../../core/model/basic-form-control';
 import { FormMode } from '../../../../core/model/form.mode.enum';
 import { AuthService } from '../../../../core/modules/auth/services/auth.service';
 import { ChangeNote } from '../../../../features/home/modules/change-management/model/change-note';
-
-
 
 
 @Component({
@@ -18,7 +15,7 @@ export class ChangeNoteComponent {
 
   @Input() mode: FormMode = FormMode.Display;
   @Input() parentForm!: FormGroup;
-  @Input() changeNote!: ChangeNote;
+  @Input() changeNote!: ChangeNote | null | undefined;
   changeNoteForm = new FormGroup({}) as FormGroup;
 
   @Output() onFormUpdate = new EventEmitter<ChangeNote>()
@@ -27,14 +24,26 @@ export class ChangeNoteComponent {
   constructor(private authService: AuthService) {
 
     this.changeNoteForm.valueChanges.subscribe(() => {
-      this.onFormUpdate.emit({ ...this.changeNoteForm.getRawValue() });
+      this.onFormUpdate.emit(ChangeNote.fromFormValue({ ...this.changeNoteForm.getRawValue() }));
     })
   }
 
 
-  ngOnInit() {
+  ngOnChanges(changes: SimpleChanges) {
     if (this.parentForm != null) { this.parentForm.addControl('changeNote', this.changeNoteForm) }
 
+    this.addFieldsToForm();
+
+    if (this.changeNote != null) { this.changeNoteForm.patchValue(ChangeNote.toFormValue(this.changeNote)); }
+
+
+    const changeNote: ChangeNote = changes['changeNote']?.currentValue;
+
+    if (changeNote) { this.changeNoteForm.patchValue(ChangeNote.toFormValue(changeNote)); }
+  }
+
+
+  private addFieldsToForm() {
     const fieldConfig = this.formFieldConfig();
 
     fieldConfig.forEach(field => {
@@ -47,20 +56,20 @@ export class ChangeNoteComponent {
 
     const config = {
       CREATE: [
-        { fieldName: 'id', value: 0, disabled: true },
+        { fieldName: 'id', value: '', disabled: true },
         { fieldName: 'changeDescription', value: '', disabled: false },
-        { fieldName: 'dateCreated', value: DateUtil.dateAsString(new Date()), disabled: true },
-        { fieldName: 'createdBy', value: this.authService.currentUserValue, disabled: true }],
+        { fieldName: 'dateCreated', value: '', disabled: true },
+        { fieldName: 'createdBy', value: '', disabled: true }],
       MODIFY: [
-        { fieldName: 'id', value: this.changeNote?.id ?? 0, disabled: true },
-        { fieldName: 'changeDescription', value: this.changeNote?.changeDescription ?? '', disabled: false },
-        { fieldName: 'dateCreated', value: this.changeNote?.dateCreated ?? '', disabled: true },
-        { fieldName: 'createdBy', value: this.changeNote?.createdBy ?? '', disabled: true }],
+        { fieldName: 'id', value: '', disabled: true },
+        { fieldName: 'changeDescription', value: '', disabled: false },
+        { fieldName: 'dateCreated', value: '', disabled: true },
+        { fieldName: 'createdBy', value: '', disabled: true }],
       DISPLAY: [
-        { fieldName: 'id', value: this.changeNote?.id ?? 0, disabled: true },
-        { fieldName: 'changeDescription', value: this.changeNote?.changeDescription ?? '', disabled: true },
-        { fieldName: 'dateCreated', value: this.changeNote?.dateCreated ?? '', disabled: true },
-        { fieldName: 'createdBy', value: this.changeNote?.createdBy ?? '', disabled: true }],
+        { fieldName: 'id', value: '', disabled: true },
+        { fieldName: 'changeDescription', value: '', disabled: true },
+        { fieldName: 'dateCreated', value: '', disabled: true },
+        { fieldName: 'createdBy', value: '', disabled: true }]
     }
 
     return config[this.mode];

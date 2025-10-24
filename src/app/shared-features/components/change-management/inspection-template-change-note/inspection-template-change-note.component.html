@@ -1,0 +1,10 @@
+<app-inspection-template [parentForm]="inspectionTemplateChangeNoteForm" [mode]="mode"
+    [inspectionTemplate]="inspectionTemplateChangeNote?.inspectionTemplate"
+    (onFormUpdate)="updateInspectionTemplateValue($event)"></app-inspection-template>
+
+
+<div style="margin-top: 5px;">
+    <app-change-note [parentForm]="inspectionTemplateChangeNoteForm" [mode]="mode"
+        [changeNote]="inspectionTemplateChangeNote?.changeNote"
+        (onFormUpdate)="updateChangeNoteValue($event)"></app-change-note>
+</div>

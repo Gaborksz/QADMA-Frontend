@@ -1,0 +1,6 @@
+<form [formGroup]="modifyForm" (ngSubmit)="save()">
+    <app-product-change-note [mode]="mode" [parentForm]="modifyForm"
+        [productChangeNote]="productChangeNote"></app-product-change-note>
+
+    <button *ngIf="modifyForm.valid" style="margin-top: 5px;" class="ui button huge green fluid">Save</button>
+</form>

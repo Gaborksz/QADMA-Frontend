@@ -1,5 +1,6 @@
 <form [formGroup]="createForm" (ngSubmit)="save()">
-    <app-product-change-note [mode]=mode [parentForm]="createForm"></app-product-change-note>
+    <app-product-change-note [mode]="mode" [parentForm]="createForm"
+        [productChangeNote]="productChangeNote"></app-product-change-note>
 
     <button *ngIf="createForm.valid" style="margin-top: 5px;" class="ui button huge green fluid">Create</button>
 </form>

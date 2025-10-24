@@ -1,9 +1,7 @@
 <div>
-    <app-product [mode]="mode" [product]="this.productChangeNote.product"
-        [parentForm]="productChangeNoteForm"></app-product>
+    <app-product [mode]="mode" [product]="product" [parentForm]="productChangeNoteForm"></app-product>
 </div>
 
 <div style="margin-top: 5px;">
-    <app-change-note [mode]="mode" [changeNote]="this.productChangeNote.changeNote"
-        [parentForm]="productChangeNoteForm"></app-change-note>
+    <app-change-note [mode]="mode" [changeNote]="changeNote" [parentForm]="productChangeNoteForm"></app-change-note>
 </div>
