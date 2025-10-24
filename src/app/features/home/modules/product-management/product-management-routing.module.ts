@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductManagementHomeComponent } from './components/product-management-home/product-management-home.component';
-import { ProductSearchComponent } from './components/product-search/product-search.component';
-import { ProductSearchResultComponent } from './components/product-search-result/product-search-result.component';
-import { NoSearchResultComponent } from './components/no-search-result/no-search-result.component';
-
+import { ProductSearchComponent } from '../../../../shared-features/components/product-management/product-search/product-search.component';
+import { ProductChangeNoteCreateComponent } from '../../../../shared-features/components/change-management/product-change-note-create/product-change-note-create.component';
+import { ProductChangeNoteModifyComponent } from '../../../../shared-features/components/change-management/product-change-note-modify/product-change-note-modify.component';
+import { ProductResolverService } from './resolver/product-resolver.service';
 
 
 const routes: Routes = [{
@@ -12,21 +12,22 @@ const routes: Routes = [{
   component: ProductManagementHomeComponent,
   children: [
     {
+      path: '', redirectTo: 'search', pathMatch: 'full'
+    },
+    {
       path: 'search',
-      component: ProductSearchComponent,
-      children: [
-        {
-          path: 'results',
-          component: ProductSearchResultComponent
-        },
-        {
-          path: 'no-results', component: NoSearchResultComponent
-        }
-      ]
+      component: ProductSearchComponent
     },
     {
       path: 'create',
-      component: ProductManagementHomeComponent
+      component: ProductChangeNoteCreateComponent
+    },
+    {
+      path: 'modify/:id',
+      component: ProductChangeNoteModifyComponent,
+      resolve: {
+        product: ProductResolverService
+      }
     }
   ]
 }];
