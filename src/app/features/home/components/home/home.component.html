@@ -1,5 +1,5 @@
 <div class="ui secondary menu grey inverted">
-    <a routerLink="product-management/search" routerLinkActive="active" class="item">
+    <a routerLink="product-management" routerLinkActive="active" class="item">
         Product-Management
     </a>
     <a routerLink="change-management" routerLinkActive="active" class="item">
@@ -18,8 +18,8 @@
                 <i class="search link icon"></i>
             </div>
         </div>
-        <a class="ui item">
-            Logout
+        <a class="ui item" (click)="signOut()">
+            Signout
         </a>
     </div>
 </div>

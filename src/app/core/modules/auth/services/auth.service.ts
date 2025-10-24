@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable, tap, map } from 'rxjs';
 import { SignInCredential } from '../model/signin-credential';
 import { QadmaUser } from '../../../model/qadma-user';
 import { QadmaUserDTO } from '../../../model/qadma-user-dto';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,10 @@ export class AuthService {
   private currentUser = new BehaviorSubject<QadmaUser>(new QadmaUser);
   currentUser$ = this.currentUser.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router
+  ) { }
 
 
   signIn(loginCredentials: SignInCredential): Observable<QadmaUser> {
@@ -48,6 +52,13 @@ export class AuthService {
 
   signUp(signUpCredentials: SignInCredential): Observable<boolean> {
     return this.http.post<boolean>(`${this.baseUrl}/api/auth/signup`, signUpCredentials);
+  }
+
+
+  signOut() {
+    this.http.get<any>(`${this.baseUrl}/api/auth/signout`).subscribe(() => {
+      this.router.navigateByUrl('/')
+    })
   }
 
 
