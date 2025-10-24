@@ -16,14 +16,16 @@ export class InputComponent {
   @Output() blur = new EventEmitter();
   @Output() valueChange = new EventEmitter<string>()
 
-  onBlur() {
-    this.blur.emit();
-  }
 
   ngOnInit() {
     this.inputControl.valueChanges.subscribe(value => {
       this.valueChange.emit(value)
     });
+  }
+
+
+  onBlur() {
+    this.blur.emit();
   }
 }
 
