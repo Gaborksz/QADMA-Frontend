@@ -7,8 +7,6 @@ import { UserInputComponent } from './components/user-input/user-input.component
 import { DynamicDateFilterComponent } from './components/dynamic-date-filter/dynamic-date-filter.component';
 
 
-
-
 @NgModule({
   declarations: [
     InputComponent, DynamicDateFilterComponent, TextInputDropdownSearchComponent, UserInputComponent
