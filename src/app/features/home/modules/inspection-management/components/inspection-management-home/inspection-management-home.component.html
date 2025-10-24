@@ -1,0 +1,16 @@
+<h3>Inspection Management</h3>
+<div class="ui stackable grid">
+    <div class="three wide column">
+        <div class="ui vertical fluid tabular menu teal inverted">
+            <a class="item" routerLink="search" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                Search Inspection Template
+            </a>
+            <a class="item" routerLink="create" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                Create Inspection Template
+            </a>
+        </div>
+    </div>
+    <div class="ten wide column">
+        <router-outlet></router-outlet>
+    </div>
+</div>
