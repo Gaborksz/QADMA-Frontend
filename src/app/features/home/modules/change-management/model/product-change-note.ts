@@ -1,5 +1,6 @@
 import { Product } from "../../product-management/model/product"
 import { ChangeNote } from "./change-note"
+import { IProductChangeNote } from "./iproduct-change-note";
 import { ProductChangeNoteDTO } from "./product-change-note-dto";
 
 export class ProductChangeNote {
@@ -26,5 +27,15 @@ export class ProductChangeNote {
         const { id, changeDescription, dateCreated, createdBy } = changeNoteDTO;
 
         return { id, changeDescription, dateCreated, createdBy, product };
+    }
+
+
+
+    static fromFormValue(formRawValue: IProductChangeNote): ProductChangeNote {
+
+        const changeNote: ChangeNote = ChangeNote.fromFormValue(formRawValue.changeNote)
+        const product: Product = Product.fromFormValue(formRawValue.product)
+
+        return new ProductChangeNote(changeNote, product);
     }
 }

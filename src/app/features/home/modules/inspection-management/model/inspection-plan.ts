@@ -1,7 +1,6 @@
 import { QadmaUser } from "../../../../../core/model/qadma-user";
-import { IInspectionPlan } from "./iinspection-plan";
 
-export class InspectionPlan implements IInspectionPlan {
+export class InspectionPlan {
 
     constructor(
         public id: number = 0,
