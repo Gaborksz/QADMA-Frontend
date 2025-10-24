@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ProductChangeNote } from '../model/product-change-note';
 import { ActivatedRouteSnapshot, MaybeAsync, Resolve, RouterStateSnapshot } from '@angular/router';
-import { ProductChangeNoteService } from '../service/product-change-note.service';
+import { ProductChangeNoteService } from '../../../../../core/services/product-change-note.service';
+import { of } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,6 @@ export class ProductChangeNoteResolverService implements Resolve<ProductChangeNo
 
     const id = route.paramMap.get('id');
 
-    return this.productChangeNoteService.getProductChangeNote(1);
+    return of(new ProductChangeNote());
   }
 }
