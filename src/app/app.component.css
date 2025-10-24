@@ -1,22 +1,23 @@
 .app-container {
     position: relative;
-    height: 100vh;
+    min-height: 90vh;
     overflow: hidden;
 }
 
 /* hidden sidebar */
 .message-board {
     position: fixed;
-    top: 0;
+    bottom: 0;
     right: -240px;
     /* start hidden offscreen */
     width: 240px;
-    height: 100%;
+    height: 90%;
     background: #026d6d;
     color: white;
     padding: 1rem;
     transition: right 0.3s ease;
     z-index: 1000;
+    border-radius: 10px;
 }
 
 .message-board.open {
@@ -27,11 +28,16 @@
 /* invisible trigger area */
 .hover-zone {
     position: fixed;
-    top: 0;
+    bottom: 0;
     right: 0;
-    width: 50px;
+    width: 100px;
     /* only 10px wide */
-    height: 100%;
+    height: 90%;
     cursor: pointer;
     z-index: 999;
+}
+
+
+.scrollable {
+    overflow-y: scroll;
 }
