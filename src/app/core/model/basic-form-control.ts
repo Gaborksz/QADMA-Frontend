@@ -39,7 +39,7 @@ export class BasicFormControl extends FormControl {
         } | undefined): void {
 
 
-        this.previousValue = this.value;
+        this.previousValue = structuredClone(this.value);
         super.setValue(value, options);
     }
 }
