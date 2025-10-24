@@ -5,6 +5,7 @@ import { InspectionManagementHomeComponent } from './components/inspection-manag
 import { ReactiveFormsModule } from '@angular/forms';
 import { InspectionPlanFormComponent } from './components/inspection-plan-form/inspection-plan-form.component';
 import { SharedModule } from '../../../../shared/shared.module';
+import { SharedFeaturesModule } from '../../../../shared-features/shared-features.module';
 
 
 
@@ -17,6 +18,7 @@ import { SharedModule } from '../../../../shared/shared.module';
     CommonModule,
     InspectionManagementRoutingModule,
     SharedModule,
+    SharedFeaturesModule,
     ReactiveFormsModule
   ],
   exports: [
