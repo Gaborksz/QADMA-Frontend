@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { CoreModule } from "./core/core.module";
+import { MessageBoardService } from './core/services/message-board.service';
 
 
 @Component({
@@ -15,7 +16,13 @@ export class AppComponent {
 
   menuOpen = false;
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private messageBoardService: MessageBoardService
+  ) {
+    this.messageBoardService.menuOpen$.subscribe(isOpen => {
+      this.menuOpen = isOpen;
+    })
   }
 
   ngOnInit() {
