@@ -37,6 +37,13 @@ export class ProductService {
       .pipe(map((dtos: ProductDTO[]) => dtos.map(dto => Product.fromDTO(dto))))
   }
 
+
+  getProductById(id: number): Observable<Product> {
+    return this.http.get<ProductDTO>(`${this.baseUrl}/api/product/${id}`)
+      .pipe(map(dto => Product.fromDTO(dto)))
+  }
+
+
   setproductSerachCriteria(criteria: ProductSearchCriteria | null) {
     this.productSerachCriteriaObs.next(criteria);
   }
