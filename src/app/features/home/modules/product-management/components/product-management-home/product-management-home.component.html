@@ -2,15 +2,11 @@
 <div class="ui stackable grid">
     <div class="two wide column">
         <div class="ui vertical fluid tabular menu teal inverted">
-            <a class="item" routerLink="search" routerLinkActive="active">
+            <a class="item" routerLink="search" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 Search
             </a>
-            <a class="item" routerLink="create" routerLinkActive="active" [queryParams]="{ formMode: 'CREATE' }"
-                [routerLinkActiveOptions]="{exact: true}">
+            <a class="item" routerLink="create" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 Create
-            </a>
-            <a class="item" routerLink="change" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                Modify
             </a>
         </div>
     </div>
