@@ -5,12 +5,11 @@ import { QadmaUserDTO } from "./qadma-user-dto";
 
 export class QadmaUser implements Comparable<QadmaUser> {
 
-    id: number = 0;
-    username: string = '';
-    authorities: QadmaUserAuthority[] = [];
-
-
-    constructor() { }
+    constructor(
+        public id: number = 0,
+        public username: string = '',
+        public authorities: QadmaUserAuthority[] = []
+    ) { }
 
 
     equalTo(other: QadmaUser): boolean {
