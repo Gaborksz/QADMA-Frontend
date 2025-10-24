@@ -1,0 +1,48 @@
+<form class="ui form" [formGroup]="inspectionTemplateForm">
+    <h3 class="ui header teal">Inspection Template</h3>
+
+    <div class="fields">
+        <!-- <div class="one wide field">
+            <app-input [inputControl]="getControl('id')" label="Id"></app-input>
+        </div> -->
+        <app-input class="ten wide field" [inputControl]="getControl('title')" label="Title"
+            controlType="text"></app-input>
+
+        <app-input class="two wide field" [inputControl]="getControl('revision')" label="Revision"
+            controlType="number"></app-input>
+    </div>
+
+
+    <div class="fields" style="margin-top: 10px;">
+        <app-input class="three wide field" [inputControl]="getControl('dateCreated')" label="Date Created"
+            controlType="date"></app-input>
+
+        <app-user-input class="eight wide field" [inputControl]="getControl('createdBy')"
+            label="Created By"></app-user-input>
+    </div>
+
+    <div class="fields" style="margin-top: 10px;">
+        <app-input class="three wide field" [inputControl]="getControl('dateModified')" label="Date Modified"
+            controlType="date"></app-input>
+
+        <app-user-input class="eight wide field" [inputControl]="getControl('modifiedBy')"
+            label="Modified By"></app-user-input>
+    </div>
+
+    <app-input class="two wide field" [inputControl]="getControl('specificationDescription')"
+        label="Specification Description" controlType="text" [textarea]="true"></app-input>
+
+    <div class="fields" style="margin-top: 10px;">
+        <app-input class="three wide field" [inputControl]="getControl('attributeInspection')"
+            label="Attribute Inspection" controlType="checkbox"></app-input>
+
+        <app-input class="four wide field" [inputControl]="getControl('specificationValue')" label="Specification Value"
+            controlType="number"></app-input>
+
+        <app-input class="four wide field" [inputControl]="getControl('plusTolerance')" label="Plus Tolerance Value"
+            controlType="number"></app-input>
+
+        <app-input class="four wide field" [inputControl]="getControl('minusTolerance')" label="Minus Tolerance Value"
+            controlType="number"></app-input>
+    </div>
+</form>
