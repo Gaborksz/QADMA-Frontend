@@ -1,0 +1,5 @@
+<label>{{label}}</label>
+<select class="ui dropdown" [formControl]="inputControl">
+    <option value="None" disabled selected>Select an option</option>
+    <option *ngFor="let item of selectors" [value]="item">{{ item }}</option>
+</select>

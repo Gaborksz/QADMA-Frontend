@@ -6,6 +6,7 @@ import { ChangeNote } from '../../../../features/home/modules/change-management/
 import { InspectionTemplate } from '../../../../features/home/modules/inspection-management/model/inspection-template';
 import { InspectionTemplateChangeNoteService } from '../../../../core/services/inspection-template-change-note.service';
 import { FormGroup } from '@angular/forms';
+import { MessageBoardService } from '../../../../core/services/message-board.service';
 
 @Component({
   selector: 'app-inspection-template-change-note-create',
@@ -22,20 +23,13 @@ export class InspectionTemplateChangeNoteCreateComponent {
 
   constructor(
     private authService: AuthService,
-    private inspectionTemplateChangeNoteService: InspectionTemplateChangeNoteService
+    private inspectionTemplateChangeNoteService: InspectionTemplateChangeNoteService,
+    private messageBoardService: MessageBoardService
   ) {
 
-    const changeNote: ChangeNote = new ChangeNote(0, '', new Date(), this.authService.currentUserValue);
-    const inspectionTemplate: InspectionTemplate = new InspectionTemplate({
-      id: 0,
-      revision: 1,
-      dateCreated: new Date(),
-      createdBy: this.authService.currentUserValue,
-      dateModified: new Date(),
-      modifiedBy: this.authService.currentUserValue
-    })
 
-    this.inspectionTemplateChangeNote = new InspectionTemplateChangeNote({ changeNote, inspectionTemplate })
+
+    this.inspectionTemplateChangeNote = this.createBlankInspectionTemplateChangeNote();
   }
 
 
@@ -48,7 +42,32 @@ export class InspectionTemplateChangeNoteCreateComponent {
     this.inspectionTemplateChangeNoteService
       .saveInspectionTemplateChangeNote(this.updatedInspectionTemplateChangeNote)
       .subscribe(value => {
-        console.log(value)
+        if (value.inspectionTemplate) {
+          this.messageBoardService.displayMessage({
+            className: InspectionTemplate.name,
+            value: `${value.inspectionTemplate?.title} - id: ${value.inspectionTemplate?.id}`,
+            operation: 'Creation',
+            date: new Date()
+          })
+        }
+
+        this.inspectionTemplateChangeNote = this.createBlankInspectionTemplateChangeNote();
       })
+  }
+
+
+  private createBlankInspectionTemplateChangeNote(): InspectionTemplateChangeNote {
+
+    const changeNote: ChangeNote = new ChangeNote(0, '', new Date(), this.authService.currentUserValue);
+    const inspectionTemplate: InspectionTemplate = new InspectionTemplate({
+      id: 0,
+      revision: 1,
+      dateCreated: new Date(),
+      createdBy: this.authService.currentUserValue,
+      dateModified: new Date(),
+      modifiedBy: this.authService.currentUserValue
+    })
+
+    return new InspectionTemplateChangeNote({ changeNote, inspectionTemplate });
   }
 }

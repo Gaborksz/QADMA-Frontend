@@ -16,8 +16,8 @@ export class SignInComponent {
 
   signinForm!: FormGroup;
   signinCredentials: SignInCredential = {
-    "userName": "valaki@qadma.com",
-    "password": "12345678"
+    "userName": "gabor@qadma.com",
+    "password": "password"
   }
 
   currentUser$: BehaviorSubject<QadmaUser> = new BehaviorSubject(new QadmaUser());

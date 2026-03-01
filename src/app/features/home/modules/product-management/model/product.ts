@@ -52,6 +52,7 @@ export class Product {
 
 
     static fromFormValue(formRawValue: IProduct): Product {
+
         const { id, partNumber, productName, revision, createdBy, modifiedBy, inspectionPlan } = formRawValue;
         const dateCreated = new Date(formRawValue.dateCreated);
         const dateModified = new Date(formRawValue.dateModified);

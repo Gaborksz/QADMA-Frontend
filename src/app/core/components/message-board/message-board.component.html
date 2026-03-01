@@ -1,0 +1,11 @@
+<div class="container">
+    <div *ngFor="let entry of messages">
+        <div style="height: 0px !important; border-top: 2pt solid teal; margin-top: 5px; margin-bottom: 5px;"
+            class="ui teal"></div>
+        <h3 style="display: inline !important">{{entry.date | date:'shortTime' }}</h3>
+        <h3 style="display: inline !important; margin-left: 10px;">{{entry.operation}}</h3>
+
+        <div>{{entry.className | className}} </div>
+        <div>{{entry.value}}</div>
+    </div>
+</div>

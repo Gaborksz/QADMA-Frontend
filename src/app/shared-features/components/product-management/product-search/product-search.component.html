@@ -13,20 +13,27 @@
         </div>
 
         <h4 class="ui dividing header grey"></h4>
-        <h4 class="ui header teal">Date Created</h4>
 
-        <app-dynamic-date-filter [selectorControl]="getControl('dateCreatedSelector')"
-            [dateFromControl]="getControl('dateCreatedFrom')"
-            [dateToControl]="getControl('dateCreatedTo')"></app-dynamic-date-filter>
+        <div class="two fields">
+            <div class="field">
+                <h4 class="ui header teal">Date Created</h4>
 
-        <h4 class="ui dividing header grey"></h4>
-        <h4 class="ui header teal">Date Modified</h4>
+                <app-dynamic-date-filter [selectorControl]="getControl('dateCreatedSelector')"
+                    [dateFromControl]="getControl('dateCreatedFrom')"
+                    [dateToControl]="getControl('dateCreatedTo')"></app-dynamic-date-filter>
+            </div>
 
-        <app-dynamic-date-filter [selectorControl]="getControl('dateModifiedSelector')"
-            [dateFromControl]="getControl('dateModifiedFrom')"
-            [dateToControl]="getControl('dateModifiedTo')"></app-dynamic-date-filter>
+            <div class="field">
 
-        <h4 class="ui dividing header grey"></h4>
+                <h4 class="ui header teal">Date Modified</h4>
+
+                <app-dynamic-date-filter [selectorControl]="getControl('dateModifiedSelector')"
+                    [dateFromControl]="getControl('dateModifiedFrom')"
+                    [dateToControl]="getControl('dateModifiedTo')"></app-dynamic-date-filter>
+            </div>
+        </div>
+        <h4 class="ui dividing header grey">
+        </h4>
         <h4 class="ui header teal">User Data</h4>
 
         <div class="fields">
@@ -37,7 +44,7 @@
                 <app-user-input label="Modified by" [inputControl]="getControl('modifiedBy')"></app-user-input>
             </div>
         </div>
-        <button class="ui button teal">Search</button>
+        <button class="ui huge button fluid teal">Search</button>
     </form>
 </div>
 

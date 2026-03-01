@@ -1,1 +1,71 @@
-<p>inspection-template-search works!</p>
+<form class="ui form" [formGroup]="searchForm" (ngSubmit)="search()">
+
+    <div class="two fields">
+        <div class="field">
+            <app-number-search [searchForm]="getFormGroup('idSearch')" headerTitle="Id Search"
+                label="Id"></app-number-search>
+        </div>
+
+        <div class="field">
+            <app-number-search [searchForm]="getFormGroup('revisionSearch')" headerTitle="Revision Search"
+                label="Revision"></app-number-search>
+        </div>
+    </div>
+
+    <h4 class="ui dividing header grey"></h4>
+
+    <h4 class="ui header teal">Title</h4>
+    <app-input [inputControl]="getFormControl('title')"> </app-input>
+
+
+    <h4 class="ui header teal">Specification Description</h4>
+    <app-input label="" [inputControl]="getFormControl('specificationDescription')">
+    </app-input>
+
+    <h4 class="ui dividing header grey"></h4>
+
+
+    <div class="two fields">
+        <div class="field">
+            <h4 class="ui header teal">Date Created</h4>
+            <app-dynamic-date-filter [dateFromControl]="getFormControl('dateCreatedFrom')"
+                [dateToControl]="getFormControl('dateCreatedTo')"
+                [selectorControl]="getFormControl('dateCreatedSelector')"></app-dynamic-date-filter>
+        </div>
+
+        <div class="field">
+            <h4 class="ui header teal">Date Modified</h4>
+            <app-dynamic-date-filter [dateFromControl]="getFormControl('dateModifiedFrom')"
+                [dateToControl]="getFormControl('dateModifiedTo')"
+                [selectorControl]="getFormControl('dateModifiedSelector')"></app-dynamic-date-filter>
+        </div>
+    </div>
+
+    <h4 class="ui dividing header grey"></h4>
+
+    <div class="two fields">
+        <div class="field">
+            <h4 class="ui header teal">Created By</h4>
+            <app-user-input [inputControl]="getFormControl('createdBy')" label="Created By"></app-user-input>
+        </div>
+        <div class="field">
+            <h4 class="ui header teal">Modified By</h4>
+            <app-user-input [inputControl]="getFormControl('modifiedBy')" label="Modified By"></app-user-input>
+        </div>
+    </div>
+
+
+    <h4 class="ui dividing header grey"></h4>
+
+
+    <app-number-search [searchForm]="getFormGroup('specificationValueSearch')" headerTitle="Specification Value Search"
+        label="Specification Value"></app-number-search>
+
+    <app-number-search [searchForm]="getFormGroup('plusToleranceSearch')" headerTitle="Plus Tolerance Search"
+        label="Plus Tolerance"></app-number-search>
+
+    <app-number-search [searchForm]="getFormGroup('minusToleranceSearch')" headerTitle="Minus Tolerance Search"
+        label="Minus Tolerance"></app-number-search>
+
+    <button class="ui huge button teal fluid" [disabled]="!searchFormValid">Search</button>
+</form>

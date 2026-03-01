@@ -5,5 +5,3 @@ export enum DateFilterSelectorType {
     AFTER = 'AFTER',
     BETWEEN = 'BETWEEN'
 } 
-
-export const DATE_FILTER_SELECTOR_LIST = Object.values(DateFilterSelectorType);

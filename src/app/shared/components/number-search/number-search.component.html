@@ -1,0 +1,16 @@
+<h4 class="ui header teal" style="margin: 5px;">{{headerTitle}}</h4>
+
+<form class="ui form" [formGroup]="searchForm">
+    <div class="three fields">
+        <div class="field">
+            <app-selector [inputControl]="getFormControl('selector')" [selectors]="selectors"
+                label="Selector"></app-selector>
+        </div>
+        <div class="field" *ngIf="showFromControl">
+            <app-input [inputControl]="getFormControl('fromNumber')" [label]="label" controlType="Number"></app-input>
+        </div>
+        <div class="field" *ngIf="showToControl">
+            <app-input [inputControl]="getFormControl('toNumber')" [label]="label" controlType="Number"></app-input>
+        </div>
+    </div>
+</form>

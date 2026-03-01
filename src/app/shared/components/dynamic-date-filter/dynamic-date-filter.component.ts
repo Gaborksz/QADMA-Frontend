@@ -1,9 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { DATE_FILTER_SELECTOR_LIST, DateFilterSelectorType } from '../../../core/model/date.filter.enum';
+import { DateFilterSelectorType } from '../../../core/model/date.filter.enum';
 import { DynamicDateFilterValidator } from '../../validators/dynamic-date-filter-validator';
-
-
+import { BasicFormControl } from '../../../core/model/basic-form-control';
 
 
 @Component({
@@ -13,14 +12,14 @@ import { DynamicDateFilterValidator } from '../../validators/dynamic-date-filter
 })
 export class DynamicDateFilterComponent {
 
-  @Input() selectorControl!: FormControl;
-  @Input() dateFromControl!: FormControl;
-  @Input() dateToControl!: FormControl;
+  @Input() selectorControl!: BasicFormControl;
+  @Input() dateFromControl!: BasicFormControl;
+  @Input() dateToControl!: BasicFormControl;
 
   labelcontent: string = '\u00A0';
-  showToControl: boolean = false;
-  showDateFromControl = false;
-  selectors = DATE_FILTER_SELECTOR_LIST;
+  showToControl!: boolean;
+  showDateFromControl!: boolean;
+  selectors = Object.values(DateFilterSelectorType);
 
   private config: Record<DateFilterSelectorType, { labelContent: string, showToControl: boolean }> = {
     NONE: { labelContent: '\u00A0', showToControl: false },
@@ -30,8 +29,8 @@ export class DynamicDateFilterComponent {
     AFTER: { labelContent: '\u00A0', showToControl: false }
   }
 
-  constructor(private dynamicDateFilterValidator: DynamicDateFilterValidator) {
-  }
+
+  constructor(private dynamicDateFilterValidator: DynamicDateFilterValidator) { }
 
 
   ngOnInit() {
@@ -45,7 +44,7 @@ export class DynamicDateFilterComponent {
       this.dynamicDateFilterValidator.validateDateToControl(this.selectorControlFn));
 
     this.selectorControl.valueChanges.subscribe(selectorValue => {
-      this.udpateElementVisiblityandLabelContent(selectorValue);
+      this.udpateElementVisiblityAndLabelContent(selectorValue);
       this.showDateFromControl = selectorValue !== DateFilterSelectorType.NONE;
     })
 
@@ -53,7 +52,7 @@ export class DynamicDateFilterComponent {
   }
 
 
-  udpateElementVisiblityandLabelContent(selector: DateFilterSelectorType) {
+  udpateElementVisiblityAndLabelContent(selector: DateFilterSelectorType) {
 
     if (selector === DateFilterSelectorType.NONE) {
       this.dateFromControl.setValue('');

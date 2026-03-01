@@ -34,16 +34,19 @@ export class ProductChangeNoteCreateComponent {
   save() {
     const productChangeNote: ProductChangeNote = ProductChangeNote.fromFormValue(this.createForm.get('productChangeNote')?.getRawValue())
 
-    this.productChangeNoteService.saveProductChangeNote(productChangeNote).subscribe(() => {
+    if (this.createForm.valid) {
+      this.productChangeNoteService.saveProductChangeNote(productChangeNote).subscribe(() => {
 
-      this.productChangeNote = this.getEmptyProductChangeNote();
+        this.productChangeNote = this.getEmptyProductChangeNote();
 
-      this.messageBoardService.displayMessage({
-        value: productChangeNote,
-        operation: "Creation",
-        date: new Date(Date.now())
-      })
-    });
+        this.messageBoardService.displayMessage({
+          className: Product.name,
+          value: `${productChangeNote.product.partNumber} - ${productChangeNote.product.productName}`,
+          operation: "Creation",
+          date: new Date()
+        })
+      });
+    }
   }
 
 

@@ -1,7 +1,7 @@
 
 export interface MessageBoardEntry {
-
-    value: any
+    className: string,
+    value: string
     operation: string
     date: Date
 }

@@ -10,7 +10,7 @@ export class InputComponent {
 
   @Input() label = '';
   @Input() inputControl!: FormControl;
-  @Input() controlType = '';
+  @Input() controlType = 'text';
   @Input() textarea = false;
 
   @Output() blur = new EventEmitter();

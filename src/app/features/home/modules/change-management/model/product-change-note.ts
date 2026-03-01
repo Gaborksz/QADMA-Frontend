@@ -1,3 +1,4 @@
+import { QadmaUser } from "../../../../../core/model/qadma-user";
 import { Product } from "../../product-management/model/product"
 import { ChangeNote } from "./change-note"
 import { IProductChangeNote } from "./iproduct-change-note";
@@ -13,9 +14,14 @@ export class ProductChangeNote {
 
 
     static fromDTO(dto: ProductChangeNoteDTO): ProductChangeNote {
-        const productChangeNote = new ProductChangeNote();
-        Object.assign(productChangeNote, dto);
-        return productChangeNote;
+
+        const { id, changeDescription, dateCreated } = dto;
+        const createdBy = QadmaUser.fromDTO(dto.createdBy);
+        const changeNote = new ChangeNote(id, changeDescription, dateCreated, createdBy);
+
+        const product = Product.fromDTO(dto.product);
+
+        return new ProductChangeNote(changeNote, product);
     }
 
 

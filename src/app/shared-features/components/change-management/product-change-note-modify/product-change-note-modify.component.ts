@@ -27,29 +27,44 @@ export class ProductChangeNoteModifyComponent {
     private productChangeNoteService: ProductChangeNoteService,
     private messageBoardService: MessageBoardService
   ) {
-
-    const changeNote = new ChangeNote(0, '', new Date(), this.authService.currentUserValue)
     const product: Product = this.route.snapshot.data['product'];
-    this.productChangeNote = new ProductChangeNote(changeNote, product);
+    this.productChangeNote = new ProductChangeNote(this.createBlankChangeNote(), product);
   }
 
 
   save() {
     const productChangeNote: ProductChangeNote = ProductChangeNote.fromFormValue(this.modifyForm.get('productChangeNote')?.getRawValue())
 
-    productChangeNote.product.revision++;
-    if (productChangeNote.product.dateModified) { productChangeNote.changeNote.dateCreated; }
-    if (productChangeNote.product.modifiedBy) { productChangeNote.changeNote.createdBy; }
+    if (this.modifyForm.valid) {
+      productChangeNote.product.revision++;
+      if (productChangeNote.changeNote.dateCreated) { productChangeNote.product.dateModified = productChangeNote.changeNote.dateCreated; }
 
-    console.log(productChangeNote);
+      if (productChangeNote.changeNote.createdBy) { productChangeNote.product.modifiedBy = productChangeNote.changeNote.createdBy; }
+    }
 
-    this.productChangeNoteService.saveProductChangeNote(productChangeNote).subscribe(() => {
+    this.productChangeNoteService.saveProductChangeNote(productChangeNote).subscribe((productChangeNote) => {
 
-      this.messageBoardService.displayMessage({
-        value: productChangeNote,
-        operation: "Modification",
-        date: new Date(Date.now())
-      })
+      if (productChangeNote.product) {
+        this.messageBoardService.displayMessage({
+          className: Product.name,
+          value: `${productChangeNote.product.partNumber} - ${productChangeNote.product.productName} `,
+          operation: "Modification",
+          date: new Date(Date.now())
+        })
+      }
+
+      if (this.productChangeNote) {
+
+        const product = productChangeNote.product;
+        const changeNote = this.createBlankChangeNote();
+
+        this.productChangeNote = { ...productChangeNote, product, changeNote }
+      }
     });
+  }
+
+
+  private createBlankChangeNote(): ChangeNote {
+    return new ChangeNote(0, '', new Date(), this.authService.currentUserValue);
   }
 }
